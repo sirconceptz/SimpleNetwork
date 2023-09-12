@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.hermanowicz.simplenetwork.ui.nav.singleUser.SingleUserRoute
+import com.hermanowicz.simplenetwork.ui.nav.userList.UserListRoute
 
 
 @Composable
@@ -18,11 +19,15 @@ fun AppNavHost() {
             navController = navController,
             startDestination = AppScreens.UserList.route
         ) {
-            composable(route = AppScreens.SingleUser.route) {
+            composable(route = "${AppScreens.SingleUser.route}/{id}") {
                 SingleUserRoute()
             }
             composable(route = AppScreens.UserList.route) {
-                SingleUserRoute()
+                UserListRoute(onClickSingleUser = {
+                    navController.navigate(
+                        "${AppScreens.SingleUser.route}/${it}"
+                    )
+                })
             }
         }
     }

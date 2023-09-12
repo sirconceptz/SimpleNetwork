@@ -2,7 +2,7 @@ package com.hermanowicz.simplenetwork.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class ListUsers (
+data class UserListEntity(
     @SerializedName("page")
     val page: Int? = null,
     @SerializedName("per_page")
@@ -12,5 +12,5 @@ data class ListUsers (
     @SerializedName("total_pages")
     val totalPages: Int? = null,
     @SerializedName("data")
-    val data: List<User>? = null
+    val data: List<UserEntity>? = null
 )
