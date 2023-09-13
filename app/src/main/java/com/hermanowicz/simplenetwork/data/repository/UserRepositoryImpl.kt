@@ -16,4 +16,8 @@ class UserRepositoryImpl @Inject constructor(
         return userRemoteDataSource.fetchUserById(id)
     }
 
+    override suspend fun registerUser(): String {
+        return userRemoteDataSource.registerUser()
+    }
+
 }

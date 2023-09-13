@@ -10,6 +10,7 @@ import dagger.hilt.components.SingletonComponent
 interface UserRepository {
     suspend fun fetchUserList(): List<User>
     suspend fun fetchUserById(id: Int): User
+    suspend fun registerUser() : String
 }
 
 @Module

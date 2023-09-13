@@ -1,5 +1,6 @@
 package com.hermanowicz.simplenetwork.di.remote.dataSource
 
+import com.hermanowicz.simplenetwork.data.model.NewAccountEntity
 import com.hermanowicz.simplenetwork.data.model.User
 import com.hermanowicz.simplenetwork.data.remote.dataSource.UserRemoteDataSourceImpl
 import dagger.Binds
@@ -9,7 +10,8 @@ import dagger.hilt.components.SingletonComponent
 
 interface UserRemoteDataSource {
     suspend fun fetchUserList(): List<User>
-    suspend fun fetchUserById(id: Int): User
+    suspend fun fetchUserById(id: Int) : User
+    suspend fun registerUser() : String
 }
 
 @Module

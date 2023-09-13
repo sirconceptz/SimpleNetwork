@@ -3,6 +3,7 @@ package com.hermanowicz.simplenetwork.ui.nav.userList.ui
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hermanowicz.simplenetwork.domain.FetchUserListUseCase
+import com.hermanowicz.simplenetwork.domain.RegisterTestUserUseCase
 import com.hermanowicz.simplenetwork.ui.nav.userList.state.UserListState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UserListViewModel @Inject constructor(
-    private val fetchUserListUseCase: FetchUserListUseCase
+    private val fetchUserListUseCase: FetchUserListUseCase,
+    private val registerTestUserUseCase: RegisterTestUserUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow(UserListState())
     var state: StateFlow<UserListState> = _state.asStateFlow()
@@ -32,6 +34,21 @@ class UserListViewModel @Inject constructor(
                     userList = userList
                 )
             }
+        }
+    }
+
+    fun registerTestUser() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val currentToast = registerTestUserUseCase()
+            updateCurrentToast(currentToast)
+        }
+    }
+
+    fun updateCurrentToast(currentToast: String) {
+        _state.update {
+            it.copy(
+                currentToast = currentToast
+            )
         }
     }
 }

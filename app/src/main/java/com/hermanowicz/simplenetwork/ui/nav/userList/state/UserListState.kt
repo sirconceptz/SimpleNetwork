@@ -4,5 +4,6 @@ import com.hermanowicz.simplenetwork.data.model.User
 
 
 data class UserListState(
-    val userList: List<User> = emptyList()
+    val userList: List<User> = emptyList(),
+    val currentToast: String = ""
 )
